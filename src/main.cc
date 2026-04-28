@@ -23,26 +23,26 @@ static const LPCWSTR szClassName = MAIN_WNDCLASS;
 
 HWND hInputLabel       = nullptr;
 HWND hInputEdit        = nullptr;
-// Output labels
-HWND hIntLabel         = nullptr;
-HWND hFloatLabel       = nullptr;
-HWND hUintLabel        = nullptr;
-HWND hUint64Label      = nullptr;
+// Output labels (signed -> unsigned -> float -> hex).
 HWND hShortLabel       = nullptr;
+HWND hIntLabel         = nullptr;
 HWND hLongLabel        = nullptr;
 HWND hLongLongLabel    = nullptr;
+HWND hUintLabel        = nullptr;
+HWND hUint64Label      = nullptr;
+HWND hFloatLabel       = nullptr;
 HWND hDoubleLabel      = nullptr;
 HWND hLongDoubleLabel  = nullptr;
 HWND hDwordLabel       = nullptr;
 HWND hHexLabel         = nullptr;
-// Output static controls
-HWND hIntOutput        = nullptr;
-HWND hFloatOutput      = nullptr;
-HWND hUintOutput       = nullptr;
-HWND hUint64Output     = nullptr;
+// Output (read-only edit) controls.
 HWND hShortOutput      = nullptr;
+HWND hIntOutput        = nullptr;
 HWND hLongOutput       = nullptr;
 HWND hLongLongOutput   = nullptr;
+HWND hUintOutput       = nullptr;
+HWND hUint64Output     = nullptr;
+HWND hFloatOutput      = nullptr;
 HWND hDoubleOutput     = nullptr;
 HWND hLongDoubleOutput = nullptr;
 HWND hDwordOutput      = nullptr; // Short hex
@@ -65,16 +65,16 @@ static const OutputRow g_output_rows[] = {
     { &hShortLabel,      &hShortOutput,      IDC_SHORT,      L"Short (16):"      },
     { &hIntLabel,        &hIntOutput,        IDC_INT,        L"Int (32):"        },
     { &hLongLabel,       &hLongOutput,       IDC_LONG,       L"Long (32):"       },
-    { &hLongLongLabel,   &hLongLongOutput,   IDC_LONGLONG,   L"LongLong (64):"   },
+    { &hLongLongLabel,   &hLongLongOutput,   IDC_LONGLONG,   L"Long Long (64):"   },
     // Unsigned integers.
     { &hUintLabel,       &hUintOutput,       IDC_UINT,       L"UInt (32):"       },
-    { &hUint64Label,     &hUint64Output,     IDC_UINT64,     L"UInt64:"          },
+    { &hUint64Label,     &hUint64Output,     IDC_UINT64,     L"UInt64 (64):"          },
     // Floating point.
     { &hFloatLabel,      &hFloatOutput,      IDC_FLOAT,      L"Float (32):"      },
     { &hDoubleLabel,     &hDoubleOutput,     IDC_DOUBLE,     L"Double (64):"     },
-    { &hLongDoubleLabel, &hLongDoubleOutput, IDC_LONGDOUBLE, L"LongDouble (80):" },
+    { &hLongDoubleLabel, &hLongDoubleOutput, IDC_LONGDOUBLE, L"Long Double (80):" },
     // Hex.
-    { &hDwordLabel,      &hDwordOutput,      IDC_DWORD,      L"Hex (32):"        },
+    { &hDwordLabel,      &hDwordOutput,      IDC_DWORD,      L"DWORD (32):"        },
     { &hHexLabel,        &hHexOutput,        IDC_HEX,        L"Hex (64):"        },
 };
 static constexpr size_t kNumOutputRows = sizeof(g_output_rows) / sizeof(g_output_rows[0]);

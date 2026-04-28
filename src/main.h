@@ -6,27 +6,27 @@
 extern HWND hInputLabel; // Label for the input edit
 extern HWND hInputEdit;  // Handle to input edit child window
 
-// Labels for output static controls
-extern HWND hIntLabel;
-extern HWND hFloatLabel;
-extern HWND hUintLabel;
-extern HWND hUint64Label;
+// Labels for output controls (signed -> unsigned -> float -> hex).
 extern HWND hShortLabel;
+extern HWND hIntLabel;
 extern HWND hLongLabel;
 extern HWND hLongLongLabel;
+extern HWND hUintLabel;
+extern HWND hUint64Label;
+extern HWND hFloatLabel;
 extern HWND hDoubleLabel;
 extern HWND hLongDoubleLabel;
 extern HWND hDwordLabel;
 extern HWND hHexLabel;
 
-// Our output static controls
-extern HWND hIntOutput;
-extern HWND hFloatOutput;
-extern HWND hUintOutput;
-extern HWND hUint64Output;
+// Output (read-only edit) controls.
 extern HWND hShortOutput;
+extern HWND hIntOutput;
 extern HWND hLongOutput;
 extern HWND hLongLongOutput;
+extern HWND hUintOutput;
+extern HWND hUint64Output;
+extern HWND hFloatOutput;
 extern HWND hDoubleOutput;
 extern HWND hLongDoubleOutput;
 extern HWND hDwordOutput;

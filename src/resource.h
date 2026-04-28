@@ -28,14 +28,14 @@
 /* Edit Controls */
 #define IDC_INPUT                   222
 
-/* Static Controls */
-#define IDC_INT                     223
-#define IDC_FLOAT                   224
-#define IDC_UINT                    225
-#define IDC_UINT64                  226
-#define IDC_SHORT                   227
-#define IDC_LONG                    228
-#define IDC_LONGLONG                229
+/* Static Controls (signed -> unsigned -> float -> hex) */
+#define IDC_SHORT                   223
+#define IDC_INT                     224
+#define IDC_LONG                    225
+#define IDC_LONGLONG                226
+#define IDC_UINT                    227
+#define IDC_UINT64                  228
+#define IDC_FLOAT                   229
 #define IDC_DOUBLE                  230
 #define IDC_LONGDOUBLE              231
 #define IDC_DWORD                   232
