@@ -1,0 +1,36 @@
+# Copyright 2026 Alex313031
+
+executable("hexcalc") {
+  configs += [
+    ":hexcalc_config",
+    "src/logging:hexlogger_config",
+  ]
+  precompiled_header = "src/framework.h"
+  precompiled_source = "src/pch.cc"
+  sources = [
+    "src/converters.cc",
+    "src/converters.h",
+    "src/framework.h",
+    "src/globals.h",
+    "src/hexcalc.rc",
+    "src/main.cc",
+    "src/main.h",
+    "src/resource.h",
+    "src/utils.cc",
+    "src/utils.h",
+    "src/version.h",
+  ]
+  deps = [
+    "src/logging:hexlogger",
+  ]
+}
+
+config("hexcalc_config") {
+  defines = []
+  cflags = []
+  include_dirs = [ "./src", ]
+  cflags += [
+    "-Wunused-function",
+  ]
+  libs = [ "winmm", ]
+}
