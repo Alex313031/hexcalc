@@ -33,13 +33,14 @@
 #define IDC_INT                     224
 #define IDC_LONG                    225
 #define IDC_LONGLONG                226
-#define IDC_UINT                    227
-#define IDC_UINT64                  228
-#define IDC_FLOAT                   229
-#define IDC_DOUBLE                  230
-#define IDC_LONGDOUBLE              231
-#define IDC_DWORD                   232
-#define IDC_HEX                     233
+#define IDC_USHORT                  227
+#define IDC_UINT                    228
+#define IDC_UINT64                  229
+#define IDC_FLOAT                   230
+#define IDC_DOUBLE                  231
+#define IDC_LONGDOUBLE              232
+#define IDC_DWORD                   233
+#define IDC_HEX                     234
 
 // Not in a UI menu, just keyboard accelerator
 #define IDM_UNDO                    250

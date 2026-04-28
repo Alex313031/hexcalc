@@ -28,6 +28,7 @@ HWND hShortLabel       = nullptr;
 HWND hIntLabel         = nullptr;
 HWND hLongLabel        = nullptr;
 HWND hLongLongLabel    = nullptr;
+HWND hUshortLabel      = nullptr;
 HWND hUintLabel        = nullptr;
 HWND hUint64Label      = nullptr;
 HWND hFloatLabel       = nullptr;
@@ -40,6 +41,7 @@ HWND hShortOutput      = nullptr;
 HWND hIntOutput        = nullptr;
 HWND hLongOutput       = nullptr;
 HWND hLongLongOutput   = nullptr;
+HWND hUshortOutput     = nullptr;
 HWND hUintOutput       = nullptr;
 HWND hUint64Output     = nullptr;
 HWND hFloatOutput      = nullptr;
@@ -62,20 +64,21 @@ struct OutputRow {
 
 static const OutputRow g_output_rows[] = {
     // Signed integers, narrow to wide.
-    { &hShortLabel,      &hShortOutput,      IDC_SHORT,      L"Short (16):"      },
-    { &hIntLabel,        &hIntOutput,        IDC_INT,        L"Int (32):"        },
-    { &hLongLabel,       &hLongOutput,       IDC_LONG,       L"Long (32):"       },
+    { &hShortLabel,      &hShortOutput,      IDC_SHORT,      L"Short (16):"       },
+    { &hIntLabel,        &hIntOutput,        IDC_INT,        L"Int (32):"         },
+    { &hLongLabel,       &hLongOutput,       IDC_LONG,       L"Long (32):"        },
     { &hLongLongLabel,   &hLongLongOutput,   IDC_LONGLONG,   L"Long Long (64):"   },
     // Unsigned integers.
-    { &hUintLabel,       &hUintOutput,       IDC_UINT,       L"UInt (32):"       },
-    { &hUint64Label,     &hUint64Output,     IDC_UINT64,     L"UInt64 (64):"          },
+    { &hUshortLabel,     &hUshortOutput,     IDC_USHORT,     L"UShort (16):"      },
+    { &hUintLabel,       &hUintOutput,       IDC_UINT,       L"UInt (32):"        },
+    { &hUint64Label,     &hUint64Output,     IDC_UINT64,     L"UInt64 (64):"      },
     // Floating point.
-    { &hFloatLabel,      &hFloatOutput,      IDC_FLOAT,      L"Float (32):"      },
-    { &hDoubleLabel,     &hDoubleOutput,     IDC_DOUBLE,     L"Double (64):"     },
+    { &hFloatLabel,      &hFloatOutput,      IDC_FLOAT,      L"Float (32):"       },
+    { &hDoubleLabel,     &hDoubleOutput,     IDC_DOUBLE,     L"Double (64):"      },
     { &hLongDoubleLabel, &hLongDoubleOutput, IDC_LONGDOUBLE, L"Long Double (80):" },
     // Hex.
-    { &hDwordLabel,      &hDwordOutput,      IDC_DWORD,      L"DWORD (32):"        },
-    { &hHexLabel,        &hHexOutput,        IDC_HEX,        L"Hex (64):"        },
+    { &hDwordLabel,      &hDwordOutput,      IDC_DWORD,      L"DWORD (32):"       },
+    { &hHexLabel,        &hHexOutput,        IDC_HEX,        L"QWORD (64):"       },
 };
 static constexpr size_t kNumOutputRows = sizeof(g_output_rows) / sizeof(g_output_rows[0]);
 
@@ -88,7 +91,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance,
   // Initialize common controls
   INITCOMMONCONTROLSEX icex;
   icex.dwSize = sizeof(INITCOMMONCONTROLSEX);
-  icex.dwICC  = ICC_STANDARD_CLASSES | ICC_BAR_CLASSES;
+  icex.dwICC  = ICC_STANDARD_CLASSES;
   InitCommonControlsEx(&icex);
 
   if (!RegisterWndClass(g_hInstance)) {
@@ -170,7 +173,7 @@ bool InitApp() {
     return false;
   }
   static constexpr DWORD style = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX |
-                                 WS_MAXIMIZEBOX | WS_SIZEBOX | WS_CLIPCHILDREN;
+                                 WS_SIZEBOX | WS_CLIPCHILDREN;
 
   // Create main window
   mainHwnd = CreateWindowExW(WS_EX_OVERLAPPEDWINDOW, szClassName, appTitle, style, 

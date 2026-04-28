@@ -24,8 +24,8 @@ inline constexpr INT CW_HEIGHT = 520;
 // Window size constants
 inline constexpr INT MINWIDTH  = 280;
 inline constexpr INT MINHEIGHT = 480;
-inline constexpr INT MAXWIDTH  = 800;
-inline constexpr INT MAXHEIGHT = 800;
+inline constexpr INT MAXWIDTH  = 480;
+inline constexpr INT MAXHEIGHT = 640;
 
 // Vertical padding to use between items
 inline constexpr INT kIntraPadding = 7;
