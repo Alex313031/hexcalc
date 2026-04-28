@@ -40,7 +40,7 @@ inline constexpr INT kEditControlHeight = 22;
 inline constexpr INT kLabelWidth = 110;
 
 // Button size metrics
-inline constexpr INT kButtonWidth = 80;
+inline constexpr INT kButtonWidth  = 80;
 inline constexpr INT kButtonHeight = 32;
 
 // Window style constants, to not clutter up function declarations

@@ -137,4 +137,3 @@ bool SetFontAllControls(HWND hParentWnd) {
     return false;
   }
 }
-

@@ -21,21 +21,21 @@ static constexpr bool debug_console = is_debug;
 static const LPCWSTR appTitle    = APP_NAME;
 static const LPCWSTR szClassName = MAIN_WNDCLASS;
 
-HWND hInputLabel       = nullptr;
-HWND hInputEdit        = nullptr;
+HWND hInputLabel = nullptr;
+HWND hInputEdit  = nullptr;
 // Output labels (signed -> unsigned -> float -> hex).
-HWND hShortLabel       = nullptr;
-HWND hIntLabel         = nullptr;
-HWND hLongLabel        = nullptr;
-HWND hLongLongLabel    = nullptr;
-HWND hUshortLabel      = nullptr;
-HWND hUintLabel        = nullptr;
-HWND hUint64Label      = nullptr;
-HWND hFloatLabel       = nullptr;
-HWND hDoubleLabel      = nullptr;
-HWND hLongDoubleLabel  = nullptr;
-HWND hDwordLabel       = nullptr;
-HWND hHexLabel         = nullptr;
+HWND hShortLabel      = nullptr;
+HWND hIntLabel        = nullptr;
+HWND hLongLabel       = nullptr;
+HWND hLongLongLabel   = nullptr;
+HWND hUshortLabel     = nullptr;
+HWND hUintLabel       = nullptr;
+HWND hUint64Label     = nullptr;
+HWND hFloatLabel      = nullptr;
+HWND hDoubleLabel     = nullptr;
+HWND hLongDoubleLabel = nullptr;
+HWND hDwordLabel      = nullptr;
+HWND hHexLabel        = nullptr;
 // Output (read-only edit) controls.
 HWND hShortOutput      = nullptr;
 HWND hIntOutput        = nullptr;
@@ -50,8 +50,8 @@ HWND hLongDoubleOutput = nullptr;
 HWND hDwordOutput      = nullptr; // Short hex
 HWND hHexOutput        = nullptr; // Long hex
 // Buttons
-HWND hConvertButton    = nullptr;
-HWND hAboutButton      = nullptr;
+HWND hConvertButton = nullptr;
+HWND hAboutButton   = nullptr;
 
 // Drives both creation (InitControls) and layout (HandleResize) for every
 // label/output pair, so the two stay in lockstep.
@@ -64,21 +64,21 @@ struct OutputRow {
 
 static const OutputRow g_output_rows[] = {
     // Signed integers, narrow to wide.
-    { &hShortLabel,      &hShortOutput,      IDC_SHORT,      L"Short (16):"       },
-    { &hIntLabel,        &hIntOutput,        IDC_INT,        L"Int (32):"         },
-    { &hLongLabel,       &hLongOutput,       IDC_LONG,       L"Long (32):"        },
-    { &hLongLongLabel,   &hLongLongOutput,   IDC_LONGLONG,   L"Long Long (64):"   },
+    {&hShortLabel, &hShortOutput, IDC_SHORT, L"Short (16):"},
+    {&hIntLabel, &hIntOutput, IDC_INT, L"Int (32):"},
+    {&hLongLabel, &hLongOutput, IDC_LONG, L"Long (32):"},
+    {&hLongLongLabel, &hLongLongOutput, IDC_LONGLONG, L"Long Long (64):"},
     // Unsigned integers.
-    { &hUshortLabel,     &hUshortOutput,     IDC_USHORT,     L"UShort (16):"      },
-    { &hUintLabel,       &hUintOutput,       IDC_UINT,       L"UInt (32):"        },
-    { &hUint64Label,     &hUint64Output,     IDC_UINT64,     L"UInt64 (64):"      },
+    {&hUshortLabel, &hUshortOutput, IDC_USHORT, L"UShort (16):"},
+    {&hUintLabel, &hUintOutput, IDC_UINT, L"UInt (32):"},
+    {&hUint64Label, &hUint64Output, IDC_UINT64, L"UInt64 (64):"},
     // Floating point.
-    { &hFloatLabel,      &hFloatOutput,      IDC_FLOAT,      L"Float (32):"       },
-    { &hDoubleLabel,     &hDoubleOutput,     IDC_DOUBLE,     L"Double (64):"      },
-    { &hLongDoubleLabel, &hLongDoubleOutput, IDC_LONGDOUBLE, L"Long Double (80):" },
+    {&hFloatLabel, &hFloatOutput, IDC_FLOAT, L"Float (32):"},
+    {&hDoubleLabel, &hDoubleOutput, IDC_DOUBLE, L"Double (64):"},
+    {&hLongDoubleLabel, &hLongDoubleOutput, IDC_LONGDOUBLE, L"Long Double (80):"},
     // Hex.
-    { &hDwordLabel,      &hDwordOutput,      IDC_DWORD,      L"DWORD (32):"       },
-    { &hHexLabel,        &hHexOutput,        IDC_HEX,        L"QWORD (64):"       },
+    {&hDwordLabel, &hDwordOutput, IDC_DWORD, L"DWORD (32):"},
+    {&hHexLabel, &hHexOutput, IDC_HEX, L"QWORD (64):"},
 };
 static constexpr size_t kNumOutputRows = sizeof(g_output_rows) / sizeof(g_output_rows[0]);
 
@@ -172,13 +172,13 @@ bool InitApp() {
   if (g_hInstance == nullptr) {
     return false;
   }
-  static constexpr DWORD style = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX |
-                                 WS_SIZEBOX | WS_CLIPCHILDREN;
+  static constexpr DWORD style =
+      WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_SIZEBOX | WS_CLIPCHILDREN;
 
   // Create main window
-  mainHwnd = CreateWindowExW(WS_EX_OVERLAPPEDWINDOW, szClassName, appTitle, style, 
-                             CW_USEDEFAULT, CW_USEDEFAULT, CW_WIDTH, CW_HEIGHT,
-                             nullptr, nullptr, g_hInstance, nullptr);
+  mainHwnd =
+      CreateWindowExW(WS_EX_OVERLAPPEDWINDOW, szClassName, appTitle, style, CW_USEDEFAULT,
+                      CW_USEDEFAULT, CW_WIDTH, CW_HEIGHT, nullptr, nullptr, g_hInstance, nullptr);
 
   if (mainHwnd == nullptr) {
     return false;
@@ -204,7 +204,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
       }
       break;
     case WM_GETMINMAXINFO: {
-      LPMINMAXINFO pMinMaxInfo = reinterpret_cast<LPMINMAXINFO>(lParam);
+      LPMINMAXINFO pMinMaxInfo      = reinterpret_cast<LPMINMAXINFO>(lParam);
       pMinMaxInfo->ptMinTrackSize.x = MINWIDTH;
       pMinMaxInfo->ptMinTrackSize.y = MINHEIGHT;
       pMinMaxInfo->ptMaxTrackSize.x = MAXWIDTH;
@@ -311,32 +311,27 @@ bool InitControls(HWND hWnd) {
 
   // Create everything at (0,0,0,0); HandleResize positions/sizes them once
   // WM_SIZE fires (which it does before the window is shown).
-  hInputLabel = CreateWindowExW(
-      0, WC_STATIC, L"Input:", dwCHILD | dwROW_LABEL,
-      0, 0, 0, 0, hWnd, (HMENU)IDC_STATIC, g_hInstance, nullptr);
-  hInputEdit = CreateWindowExW(
-      WS_EX_CLIENTEDGE, WC_EDIT, L"", dwCHILD | ES_AUTOHSCROLL | WS_TABSTOP,
-      0, 0, 0, 0, hWnd, (HMENU)IDC_INPUT, g_hInstance, nullptr);
+  hInputLabel = CreateWindowExW(0, WC_STATIC, L"Input:", dwCHILD | dwROW_LABEL, 0, 0, 0, 0, hWnd,
+                                (HMENU)IDC_STATIC, g_hInstance, nullptr);
+  hInputEdit =
+      CreateWindowExW(WS_EX_CLIENTEDGE, WC_EDIT, L"", dwCHILD | ES_AUTOHSCROLL | WS_TABSTOP, 0, 0,
+                      0, 0, hWnd, (HMENU)IDC_INPUT, g_hInstance, nullptr);
 
   for (size_t i = 0; i < kNumOutputRows; ++i) {
     const OutputRow& r = g_output_rows[i];
-    *r.label_hwnd = CreateWindowExW(
-        0, WC_STATIC, r.label_text, dwCHILD | dwROW_LABEL,
-        0, 0, 0, 0, hWnd, (HMENU)IDC_STATIC, g_hInstance, nullptr);
-    *r.output_hwnd = CreateWindowExW(
-        WS_EX_CLIENTEDGE, WC_EDIT, L"", dwCHILD | dwOUTPUT_EDIT,
-        0, 0, 0, 0, hWnd, (HMENU)(INT_PTR)r.output_id, g_hInstance, nullptr);
+    *r.label_hwnd  = CreateWindowExW(0, WC_STATIC, r.label_text, dwCHILD | dwROW_LABEL, 0, 0, 0, 0,
+                                     hWnd, (HMENU)IDC_STATIC, g_hInstance, nullptr);
+    *r.output_hwnd = CreateWindowExW(WS_EX_CLIENTEDGE, WC_EDIT, L"", dwCHILD | dwOUTPUT_EDIT, 0, 0,
+                                     0, 0, hWnd, (HMENU)(INT_PTR)r.output_id, g_hInstance, nullptr);
     if (*r.label_hwnd == nullptr || *r.output_hwnd == nullptr) {
       return false;
     }
   }
 
-  hConvertButton = CreateWindowExW(
-      0, WC_BUTTON, L"Convert", dwCHILD | dwBUTTON,
-      0, 0, 0, 0, hWnd, (HMENU)IDC_CONVERT, g_hInstance, nullptr);
-  hAboutButton = CreateWindowExW(
-      0, WC_BUTTON, L"About", dwCHILD | dwBUTTON,
-      0, 0, 0, 0, hWnd, (HMENU)IDC_ABOUT, g_hInstance, nullptr);
+  hConvertButton = CreateWindowExW(0, WC_BUTTON, L"Convert", dwCHILD | dwBUTTON, 0, 0, 0, 0, hWnd,
+                                   (HMENU)IDC_CONVERT, g_hInstance, nullptr);
+  hAboutButton   = CreateWindowExW(0, WC_BUTTON, L"About", dwCHILD | dwBUTTON, 0, 0, 0, 0, hWnd,
+                                   (HMENU)IDC_ABOUT, g_hInstance, nullptr);
 
   return hInputLabel && hInputEdit && hConvertButton && hAboutButton;
 }
@@ -366,7 +361,7 @@ void HandleResize(HWND hWnd) {
 
   // 1 input label + 1 input edit + 2 per output row + 2 buttons.
   const int total = 2 + static_cast<int>(kNumOutputRows) * 2 + 2;
-  HDWP hdwp = BeginDeferWindowPos(total);
+  HDWP hdwp       = BeginDeferWindowPos(total);
   if (hdwp == nullptr) {
     return;
   }
@@ -389,17 +384,17 @@ void HandleResize(HWND hWnd) {
 
   // Buttons centered both horizontally and vertically in the leftover space
   // between the last output row and the bottom edge (with client padding).
-  const int btnAreaTop    = yPos;             // Just past the last row.
+  const int btnAreaTop    = yPos; // Just past the last row.
   const int btnAreaBottom = cyClient - pad;
   const int btnAreaH      = btnAreaBottom - btnAreaTop;
-  int btnY = btnAreaTop + (btnAreaH - kButtonHeight) / 2;
+  int btnY                = btnAreaTop + (btnAreaH - kButtonHeight) / 2;
   if (btnY < btnAreaTop) {
     btnY = btnAreaTop; // Tight fit: pin to top of leftover space.
   }
   const int btnsW = kButtonWidth * 2 + intra;
   const int btnX  = (cxClient - btnsW) / 2;
-  hdwp = DeferWindowPos(hdwp, hConvertButton, nullptr, btnX, btnY,
-                        kButtonWidth, kButtonHeight, kFlags);
+  hdwp = DeferWindowPos(hdwp, hConvertButton, nullptr, btnX, btnY, kButtonWidth, kButtonHeight,
+                        kFlags);
   hdwp = DeferWindowPos(hdwp, hAboutButton, nullptr, btnX + kButtonWidth + intra, btnY,
                         kButtonWidth, kButtonHeight, kFlags);
 
