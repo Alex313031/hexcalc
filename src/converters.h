@@ -3,6 +3,10 @@
 
 #include "framework.h"
 
+#include <cfloat>  // FLT_MAX, DBL_MAX
+#include <climits> // INT_MAX/MIN, etc.
+#include <cmath>   // std::isfinite
+
 // Reads hInputEdit and returns true if it parses as a number (long double).
 bool ValidateInput();
 

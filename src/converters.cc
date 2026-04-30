@@ -1,8 +1,5 @@
 #include "converters.h"
 
-#include <cfloat>  // FLT_MAX, DBL_MAX
-#include <climits> // INT_MAX/MIN, etc.
-#include <cmath>   // std::isfinite
 #include <cstdlib> // wcstold, wcstoull
 #include <cwchar>  // swprintf
 
